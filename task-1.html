@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<HTML lang="en">
+<BODY>
+<canvas id='task-1' width='600' height='400' style="border:1px solid">
+</canvas>
+<script>
+    var canvas = document.getElementById('task-1');
+    var ctx = canvas.getContext('2d');
+    var psize = 1;
+    var shape_pos = 10;
+    var shape_size = 20;
+
+    function draw() {
+        ctx.fillStyle = "#063fab";
+        for (var j = 0; j < shape_size; j++) {
+            for (var i = 0; i < shape_size; i++) {
+                ctx.fillRect((shape_pos + i) * psize, 400 - (shape_pos + j) * psize, 1 * psize, 1 * psize);
+            }
+        }
+    }
+
+    function erase_draw() {
+        ctx.fillStyle = "#FFFFFF";
+        for (var j = 0; j < shape_size; j++) {
+            for (var i = 0; i < shape_size; i++) {
+                ctx.fillRect((shape_pos + i) * psize, 400 - (shape_pos + j) * psize, 1 * psize, 1 * psize);
+            }
+        }
+    }
+
+    setInterval(function () {
+        erase_draw();
+        shape_pos++;
+        draw();
+    }, 10);
+</script>
+</BODY>
+</HTML>
