@@ -1,0 +1,51 @@
+<HTML>
+<head>
+    <style>
+        body {
+            background: #FF55;
+        }
+    </style>
+</head>
+<BODY>
+<canvas id='task-2' width='700' height='400' style='border:1px solid'>
+</canvas>
+<script>
+    var canvas = document.getElementById('task-2');
+    var ctx = canvas.getContext('2d');
+
+    var width = canvas.width;
+    var height = canvas.height;
+
+    var x = 0;
+    var y = 400;
+
+    var fig_height = 50;
+    var fig_width = 100;
+
+    function draw_blue(img) {
+        for (var i = 0; i < fig_height; ++i) {
+            for (var j = 0; j < fig_width; ++j) {
+                var pre_it = (i * width + j) * 4;
+                img.data[pre_it] = 0;
+                img.data[pre_it + 1] = 27;
+                img.data[pre_it + 2] = 174;
+                img.data[pre_it + 3] = 180; // transparency
+
+                var post_it = (i * width + j - fig_width + 1) * 4;
+                img.data[post_it + 3] = 0; // transparency
+            }
+        }
+    }
+
+    var img_data = ctx.getImageData(0, 0, width, height);
+    setInterval(function () {
+            draw_blue(img_data);
+            ++x;
+            --y;
+            ctx.putImageData(img_data, x, y);
+        },
+        1);
+
+</script>
+</BODY>
+</HTML>
