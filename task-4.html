@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<HTML>
+<head>
+    <meta charset="utf-8">
+</head>
+<BODY>
+<h1>Сергей Лагов ИУ8-52 - Домашняя работа 4 - Окружность</h1>
+<canvas id='task-4' width="600px" height="600px"></canvas>
+<p id='demo'></p>
+<script>
+    let canvas = document.getElementById('task-4');
+    let ctx = canvas.getContext('2d');
+
+    function put_numbers(x0, y0) {
+        var x = x0 - 400;
+        var y = y0 - 400;
+    }
+
+    function dFs(x, y) {
+        return 4 * y + 6;
+    }
+
+    function dFd(x, y) {
+        return 4 * y + 4 * x + 10;
+    }
+
+    function draw_circle(r) {
+        let x = -r;
+        let y = 0;
+        let F = 1 - 2 * r;
+        while (y <= Math.abs(x)) {
+            ctx.fillStyle = "#da9800";
+            ctx.fillRect(x + 300, y + 300, 2, 2);
+            ctx.fillRect(-y + 300, -x + 300, 2, 2);
+
+            ctx.fillStyle = "#9a0707";
+            ctx.fillRect(-x + 300, y + 300, 2, 2);
+            ctx.fillStyle = "#ff00ff";
+            ctx.fillRect(y + 300, -x + 300, 2, 2);
+
+            ctx.fillStyle = "#00f0ff";
+            ctx.fillRect(-x + 300, -y + 300, 2, 2);
+            ctx.fillStyle = "#6600ff";
+            ctx.fillRect(y + 300, x + 300, 2, 2);
+            ctx.fillStyle = "#005000";
+            ctx.fillRect(x + 300, -y + 300, 2, 2);
+            ctx.fillStyle = "#4d2d00";
+            ctx.fillRect(-y + 300, x + 300, 2, 2);
+
+            if (F < 0) {
+                F += dFs(x, y);
+                y++;
+            } else {
+                F += dFd(x, y);
+                x++;
+                y++;
+            }
+        }
+    }
+
+    var x0 = 800, y0 = 600;
+    var R = 150;
+
+    put_numbers(x0, y0);
+    draw_circle(R + 50);
+</script>
+</BODY>
+</HTML>
